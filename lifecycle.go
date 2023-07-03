@@ -160,6 +160,7 @@ func (c *DockerContainer) printLogs(ctx context.Context) {
 		c.logger.Printf("failed accessing container logs: %w\n", err)
 		return
 	}
+	defer reader.Close()
 
 	b, err := io.ReadAll(reader)
 	if err != nil {
